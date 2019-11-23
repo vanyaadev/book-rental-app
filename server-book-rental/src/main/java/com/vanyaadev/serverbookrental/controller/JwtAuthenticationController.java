@@ -2,6 +2,7 @@ package com.vanyaadev.serverbookrental.controller;
 
 import java.util.Objects;
 
+import com.vanyaadev.serverbookrental.model.UserDTO;
 import com.vanyaadev.serverbookrental.security.JwtRequest;
 import com.vanyaadev.serverbookrental.security.JwtResponse;
 import com.vanyaadev.serverbookrental.security.JwtTokenUtil;
@@ -44,6 +45,11 @@ public class JwtAuthenticationController {
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+        return ResponseEntity.ok(userDetailService.save(user));
     }
 
     private void authenticate(String username, String password) throws Exception {
