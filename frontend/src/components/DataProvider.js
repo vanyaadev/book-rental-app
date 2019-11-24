@@ -5,10 +5,18 @@ const DataContext = React.createContext();
 const DataProvider = props => {
 	const [products, setProducts] = useState([]);
 
+	let authToken = localStorage.getItem('token');
+
 	useEffect(() => {
-		fetch('http://localhost:8080/books')
+		fetch('http://localhost:8080/books', {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: authToken
+			}
+		})
 			.then(response => response.json())
-			.then(data => setProducts(data));
+			.then(data => setProducts(data))
+			.catch(error => console.log(error));
 	}, []);
 
 	return (

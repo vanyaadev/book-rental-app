@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 export default class Registration extends Component {
 	state = {
-		email: '',
+		username: '',
 		password: ''
 	};
 	handleEmailChange = e => {
-		this.setState({ email: e.target.value });
+		this.setState({ username: e.target.value });
 	};
 
 	handlePasswordChange = e => {
@@ -18,9 +18,9 @@ export default class Registration extends Component {
 			<form>
 				<input
 					type='text'
-					name='email'
-					placeholder='Email'
-					value={this.state.email}
+					name='username'
+					placeholder='Username'
+					value={this.state.username}
 					onChange={this.handleEmailChange}
 				/>
 				<input
@@ -38,7 +38,7 @@ export default class Registration extends Component {
 	}
 
 	handleLogin = () => {
-		fetch('http://localhost:8080/registration', {
+		fetch('http://localhost:8080/register', {
 			method: 'POST',
 			mode: 'cors',
 			headers: {

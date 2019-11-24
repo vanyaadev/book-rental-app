@@ -5,6 +5,7 @@ import { NoMatch } from '../components/NoMatch';
 import { NavigationBar } from '../components/NavigationBar';
 import { ProductList } from '../components/ProductList';
 import Registration from '../components/Registration';
+import Login from '../components/Login';
 import Details from '../components/Details';
 
 export const App = () => {
@@ -19,6 +20,7 @@ export const App = () => {
 					render={props => <Details {...props}></Details>}
 				/>
 				<Route exact path='/registration' component={Registration} />
+				<Route exact path='/login' component={Login} />
 				<Route component={NoMatch} />
 			</Switch>
 		</React.Fragment>

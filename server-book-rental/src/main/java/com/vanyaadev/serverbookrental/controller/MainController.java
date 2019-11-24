@@ -19,6 +19,7 @@ public class MainController {
         return "Homepage";
     }
 
+    @CrossOrigin
     @GetMapping("books")
     public List books(){
         return bookRepository.findAll();
