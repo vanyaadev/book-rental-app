@@ -1,8 +1,8 @@
 package com.vanyaadev.serverbookrental.model;
 
-public class UserDTO {
-    private String username;
-    private String password;
+public class LoginModel {
+    public String username;
+    public String password;
 
     public String getUsername() {
         return username;

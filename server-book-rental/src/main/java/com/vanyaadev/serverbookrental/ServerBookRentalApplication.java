@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ServerBookRentalApplication /*implements CommandLineRunner*/ {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
         SpringApplication.run(ServerBookRentalApplication.class, args);
