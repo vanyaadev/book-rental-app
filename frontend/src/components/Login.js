@@ -17,7 +17,6 @@ export default class Login extends Component {
 	handleLogin = () => {
 		fetch('http://localhost:8080/authentication', {
 			method: 'POST',
-			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/json'
 			},

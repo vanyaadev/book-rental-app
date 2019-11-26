@@ -5,17 +5,25 @@ import { DataContext } from '../components/DataProvider';
 export const ProductList = () => {
 	const context = useContext(DataContext);
 
-	return (
-		<React.Fragment>
-			<div className='py-5'>
-				<div className='container'>
-					<div className='row'>
-						{context.map(prod => (
-							<Product product={prod} key={prod.id}></Product>
-						))}
+	if (context.length == 0) {
+		return (
+			<React.Fragment>
+				<div className='py-5'>
+					<div className='container'>
+						<div className='row'>
+							{context.map(prod => (
+								<Product product={prod} key={prod.id}></Product>
+							))}
+						</div>
 					</div>
 				</div>
-			</div>
-		</React.Fragment>
-	);
+			</React.Fragment>
+		);
+	} else {
+		return (
+			<React.Fragment>
+				<a href='/login'>Login</a> to see books available
+			</React.Fragment>
+		);
+	}
 };
