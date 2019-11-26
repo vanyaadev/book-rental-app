@@ -45,6 +45,8 @@ export default class Login extends Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(this.state)
-		});
+		})
+			.then(response => response.json())
+			.then(data => console.log(data));
 	};
 }
