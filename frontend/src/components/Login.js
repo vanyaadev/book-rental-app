@@ -15,7 +15,7 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<form>
+			<form action='/'>
 				<input
 					type='text'
 					name='username'
@@ -47,6 +47,10 @@ export default class Login extends Component {
 			body: JSON.stringify(this.state)
 		})
 			.then(response => response.json())
-			.then(data => console.log(data));
+			.then(data => {
+				localStorage.setItem('token', data.token);
+				window.location.href = 'http://localhost:3000';
+			})
+			.catch();
 	};
 }
