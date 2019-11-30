@@ -3,11 +3,14 @@ package com.vanyaadev.serverbookrental.controller;
 import java.util.Objects;
 
 import com.vanyaadev.serverbookrental.model.UserDTO;
+import com.vanyaadev.serverbookrental.repo.UserRepository;
 import com.vanyaadev.serverbookrental.security.JwtRequest;
 import com.vanyaadev.serverbookrental.security.JwtResponse;
 import com.vanyaadev.serverbookrental.security.JwtTokenUtil;
 import com.vanyaadev.serverbookrental.security.JwtUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -29,6 +32,9 @@ public class JwtAuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
@@ -36,15 +42,19 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/authentication", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        String userName = authenticationRequest.getUsername();
+        String password = authenticationRequest.getPassword();
+        authenticate(userName, password);
 
         final UserDetails userDetails = userDetailService
-                .loadUserByUsername(authenticationRequest.getUsername());
+                .loadUserByUsername(userName);
 
         final String token = jwtTokenUtil.generateToken(userDetails);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Role", userRepository.findByUsername(userName).getRoles());
+        ResponseEntity responseEntity = new ResponseEntity(new JwtResponse(token),headers, HttpStatus.OK);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return responseEntity;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

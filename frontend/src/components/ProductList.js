@@ -4,9 +4,8 @@ import { DataContext } from '../components/DataProvider';
 
 export const ProductList = () => {
 	const context = useContext(DataContext);
-	console.log(localStorage.getItem('token'));
 
-	if (context.length != 0) {
+	if (context.length !== 0) {
 		return (
 			<React.Fragment>
 				<div className='py-5'>

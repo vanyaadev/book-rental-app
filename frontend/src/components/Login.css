@@ -1,0 +1,19 @@
+.login-form {
+	color: black;
+}
+
+.button {
+	text-transform: capitalized;
+	font-weight: bold;
+	background: transparent;
+	border: 0.099rem solid #124215;
+	border-radius: 0.5rem;
+	color: #0d310f;
+	padding: 0.5rem;
+	transition: all ease-in-out;
+}
+
+.button:hover {
+	background: #2f5931;
+	color: #000000;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Login from './Login';
 import logo from '../logo.png';
 import styled from 'styled-components';
-
+import './NavigationBar.css';
 export const NavigationBar = () => (
 	<NavWrap className='navbar navbar-expand-sm  px-sm-5 '>
 		<Link to='/'>
@@ -21,12 +21,22 @@ export const NavigationBar = () => (
 			Books
 		</Link>
 
-		<Link to='/cart' className='ml-auto'>
-			<ButtonContainer>
-				<i className='fas fa-cart-plus'></i>
-				<span className='pl-1'>My cart</span>
-			</ButtonContainer>
-		</Link>
+		<div className='ml-auto'>
+			<Link className='mr-1' id='dropdown'>
+				<ButtonContainer>
+					<span className='pl-1'>Login</span>
+				</ButtonContainer>
+				<div className='dropdown-content'>
+					<Login></Login>
+				</div>
+			</Link>
+			<Link to='/cart'>
+				<ButtonContainer>
+					<i className='fas fa-cart-plus'></i>
+					<span className='pl-1'>My cart</span>
+				</ButtonContainer>
+			</Link>
+		</div>
 	</NavWrap>
 );
 

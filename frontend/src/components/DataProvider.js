@@ -16,7 +16,7 @@ const DataProvider = props => {
 		})
 			.then(response => response.json())
 			.then(data => setProducts(data))
-			.catch(error => console.log(error));
+			.catch(error => setProducts([]));
 	}, []);
 
 	return (
